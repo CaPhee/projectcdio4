@@ -1,3 +1,4 @@
 class User < ApplicationRecord
-    has_one :account
+  belongs_to :roles
+  has_many :posts
 end

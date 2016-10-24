@@ -1,15 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyText
+  location_name: MyString
+  address: MyString
   area_id: 1
   description: MyText
-  isowner: false
+  details: MyText
+  user_id: 1
+  owner_id: 1
 
 two:
-  name: MyString
-  address: MyText
+  location_name: MyString
+  address: MyString
   area_id: 1
   description: MyText
-  isowner: false
+  details: MyText
+  user_id: 1
+  owner_id: 1
