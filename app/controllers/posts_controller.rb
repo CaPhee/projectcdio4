@@ -3,25 +3,23 @@ class PostsController < ApplicationController
 
   end
 
-  def create
-  	@post = Post.new(params.require(:post).permit(:id,:title, :content))
-
-	if @post.save
-		redirect_to action: 'show', id: @post.id
-	else
-		render "new"
-	end
-  end
-
-  def show 
-  	@post = Post.find(params[:id])
-  end
-
-  def edit
+  def show
     @post = Post.find(params[:id])
   end
 
-  def delete
+  def create
+    @post = Post.new(post_param)
+    if @post.save
+      # chuyển tới trang show post
+      redirect_to post_path(@post)
+    else
+      # quay lại trang tạo post mới, đồng thời show error
+      redirect_to new_post_path, flash: { error: @post.errors.full_messages }
+    end
+  end
 
+  private
+  def post_param
+    params.require(:post).permit(:content, :title)
   end
 end

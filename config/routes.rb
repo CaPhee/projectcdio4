@@ -2,15 +2,13 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 	root 'home#index'
-  get 'home/index'
+  resources :posts
 
-  get 'posts/new'
-  post 'posts/create'
-
-  get 'posts/:id/edit' => 'posts#edit'
-
-  get 'posts/delete'
-
-  get 'posts/:id', to: 'posts#show' 
+  controller :users do
+    get 'user/login' => :login, as: 'login'
+    get 'user/edit' => :edit, as: 'edit'
+    get 'user/signup' => :new, as:'new'
+    post 'user/signup' => :create, as:'signup'
+  end
 
 end

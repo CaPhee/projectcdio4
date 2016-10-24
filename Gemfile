@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
+gem 'bcrypt', '~> 3.1', '>= 3.1.5'
 gem 'puma',         '3.6.0'
 gem 'uglifier',     '3.0.0'
 gem 'coffee-rails', '4.2.1'
@@ -16,6 +16,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "twitter-bootstrap-rails"
 gem 'sass-rails', '~> 5.0'
 gem "font-awesome-rails"
 
