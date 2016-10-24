@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  password: MyString
+  user_token: MyString
+  id_rol: 1
+  isactive: false
+  islock: false
+
+two:
+  username: MyString
+  password: MyString
+  user_token: MyString
+  id_rol: 1
+  isactive: false
+  islock: false

@@ -1,23 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  content: MyText
-  user_id: 1
-  location_id: 1
-  views: 1
+  comment: MyText
   like: 1
   like_details: MyText
   dislike: 1
   dislike_details: MyText
+  userid: 1
+  postid: 1
 
 two:
-  title: MyString
-  content: MyText
-  user_id: 1
-  location_id: 1
-  views: 1
+  comment: MyText
   like: 1
   like_details: MyText
   dislike: 1
   dislike_details: MyText
+  userid: 1
+  postid: 1

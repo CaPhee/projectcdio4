@@ -1,0 +1,90 @@
+<%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
+
+  <% if @post.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:title) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :content, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:content) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :account_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :account_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:account_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :location_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :location_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:location_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :views, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :views, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:views) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :like, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :like, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:like) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :like_details, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :like_details, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:like_details) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :dislike, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :dislike, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:dislike) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :dislike_details, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :dislike_details, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:dislike_details) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                posts_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>
