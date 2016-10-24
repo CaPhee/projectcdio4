@@ -12,11 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20161010071937) do
 
-  create_table "alert", id: :string, limit: 45, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "content", limit: 500
-    t.string "title",   limit: 45
-  end
-
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -32,34 +27,6 @@ ActiveRecord::Schema.define(version: 20161010071937) do
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
-  create_table "funtion", primary_key: ["funtion_id", "module_id"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "funtion_id", limit: 45, null: false
-    t.string "name",       limit: 45
-    t.string "module_id",  limit: 45, null: false
-    t.index ["module_id"], name: "fk_funtion_module1_idx", using: :btree
-  end
-
-  create_table "group", primary_key: "group_id", id: :string, limit: 45, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "group_name", limit: 45, default: "Employee", null: false
-  end
-
-  create_table "migrations", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string  "migration", null: false
-    t.integer "batch",     null: false
-  end
-
-  create_table "module", id: :string, limit: 45, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name", limit: 45
-  end
-
-  create_table "person", primary_key: "users_username", id: :string, limit: 45, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name",     limit: 45
-    t.date    "birthday"
-    t.string  "address",  limit: 45
-    t.integer "phone"
-    t.boolean "sex",                 default: false
-  end
-
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.text     "content",    limit: 65535
@@ -67,39 +34,4 @@ ActiveRecord::Schema.define(version: 20161010071937) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "users", primary_key: "username", id: :string, limit: 45, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "password", limit: 45, null: false
-  end
-
-  create_table "users_has_alert", primary_key: ["users_username", "_id"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "users_username", limit: 45, null: false
-    t.string "_id",            limit: 45, null: false
-    t.index ["_id"], name: "fk_users_has__1_idx", using: :btree
-    t.index ["users_username"], name: "fk_users_has__users1_idx", using: :btree
-  end
-
-  create_table "users_has_group", primary_key: ["username", "group_id"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "username", limit: 45, null: false
-    t.string "group_id", limit: 45, null: false
-    t.index ["group_id"], name: "fk_users_has_group_group1_idx", using: :btree
-    t.index ["username"], name: "fk_users_has_group_users_idx", using: :btree
-  end
-
-  create_table "users_has_group_has_funtion", primary_key: ["users_has_group_username", "users_has_group_group_id", "funtion_funtion_id"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "users_has_group_username", limit: 45, null: false
-    t.string "users_has_group_group_id", limit: 45, null: false
-    t.string "funtion_funtion_id",       limit: 45, null: false
-    t.index ["funtion_funtion_id"], name: "fk_users_has_group_has_funtion_funtion1_idx", using: :btree
-    t.index ["users_has_group_username", "users_has_group_group_id"], name: "fk_users_has_group_has_funtion_users_has_group1_idx", using: :btree
-  end
-
-  add_foreign_key "funtion", "module", name: "fk_funtion_module1"
-  add_foreign_key "person", "users", column: "users_username", primary_key: "username", name: "fk_person_users1"
-  add_foreign_key "users_has_alert", "alert", column: "_id", name: "fk_users_has__1"
-  add_foreign_key "users_has_alert", "users", column: "users_username", primary_key: "username", name: "fk_users_has__users1"
-  add_foreign_key "users_has_group", "group", primary_key: "group_id", name: "fk_users_has_group_group1"
-  add_foreign_key "users_has_group", "users", column: "username", primary_key: "username", name: "fk_users_has_group_users"
-  add_foreign_key "users_has_group_has_funtion", "funtion", column: "funtion_funtion_id", primary_key: "funtion_id", name: "fk_users_has_group_has_funtion_funtion1"
-  add_foreign_key "users_has_group_has_funtion", "users_has_group", column: "users_has_group_group_id", primary_key: "group_id", name: "fk_users_has_group_has_funtion_users_has_group1"
-  add_foreign_key "users_has_group_has_funtion", "users_has_group", column: "users_has_group_username", primary_key: "username", name: "fk_users_has_group_has_funtion_users_has_group1"
 end
